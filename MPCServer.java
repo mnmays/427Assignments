@@ -1,4 +1,4 @@
-package _427Assignment;
+//package //_427Assignment;
 
 //imports
 import java.io.BufferedReader;
@@ -19,11 +19,12 @@ public class MPCServer
 	{
 		//declarations
 		String clientSentence; 
-		String byteArray[]; 
+		//String byteArray[] = null; 
+		byte Array[] = null; 
 
 	  ServerSocket welcomeSocket = new ServerSocket(6789); 
 	    
-  	  inputFile();
+  	  inputFile(Array);
   	  
 	  
 	      while(true) 
@@ -39,20 +40,45 @@ public class MPCServer
 	
 	
 	
-	public static void inputFile() throws IOException
+	public static void inputFile(byte Array[]) throws Exception
 	{
 		String stringLine; 
 		
-		FileInputStream input = new FileInputStream("AliceInWonderland_input.txt");
-		BufferedReader br = new BufferedReader(new InputStreamReader(input));
+		//File fileInput = new File("AliceInWonderland_input.txt");
+		//FileInputStream input = new FileInputStream("AliceInWonderland_input.txt");
+		//FileInputStream input = null; 
+		//input = new FileInputStream(fileInput);
+		//BufferedReader br = new BufferedReader(new InputStreamReader(input));
 		
+		java.io.File file = new java.io.File("AliceInWonderland_input.txt");
+
 		
-		while((stringLine = br.readLine()) != null)
-		{
-			System.out.println(stringLine);
-		}	//end while 
+		try {
+
+			Scanner input = new Scanner(file);
+
+	        while (input.hasNextLine()) {
+	            String line = input.nextLine();
+	            Array = line.getBytes();
+	            System.out.println(Array.length);
+	        }
+	        input.close();
+	    } 
+	    catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    }
+		
+
+		
+		//while((stringLine = br.readLine()) != null)
+		//{
+			//Array = stringLine.getBytes();	//converts to sequence of bytes
+			
+			//System.out.println(Array.length);
+		//}	//end while 
 	
-	}	//end input File method
+	//}	//end input File method
 
 	
 }	//end MPC Server class
+}

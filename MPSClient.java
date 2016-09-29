@@ -1,4 +1,4 @@
-package _427Assignment;
+//package //_427Assignment;
 
 //imports
 import java.io.BufferedReader;
@@ -27,9 +27,15 @@ public class MPSClient {
         System.out.println("-Query");
         System.out.println("-Download");
         
+        //prompt user
+        System.out.println("command: ");
+        
         //read input from user
         sentence = inFromUser.readLine(); 
+        
         outToServer.writeBytes(sentence + '\n'); 
+        
+        //server response
         modifiedSentence = inFromServer.readLine(); 
         System.out.println("FROM SERVER: " + modifiedSentence); 
 
