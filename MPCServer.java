@@ -1,5 +1,3 @@
-//package //_427Assignment;
-
 //imports
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -11,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class MPCServer 
@@ -19,10 +19,9 @@ public class MPCServer
 	{
 		//declarations
 		String clientSentence; 
-		//String byteArray[] = null; 
 		byte Array[] = null; 
 
-	  ServerSocket welcomeSocket = new ServerSocket(6789); 
+	  ServerSocket welcomeSocket = new ServerSocket(2228); 
 	    
   	  inputFile(Array);
   	  
@@ -41,44 +40,34 @@ public class MPCServer
 	
 	
 	public static void inputFile(byte Array[]) throws Exception
+	//this method reads the Alice in Wonderland input file from the text file to the program and converts the strings to bytes
 	{
-		String stringLine; 
-		
-		//File fileInput = new File("AliceInWonderland_input.txt");
-		//FileInputStream input = new FileInputStream("AliceInWonderland_input.txt");
-		//FileInputStream input = null; 
-		//input = new FileInputStream(fileInput);
-		//BufferedReader br = new BufferedReader(new InputStreamReader(input));
-		
-		java.io.File file = new java.io.File("AliceInWonderland_input.txt");
+		//import file
+		java.io.File file = new java.io.File("/Users/meganmays/Documents/workspace/Mays_Keyser_427AssignmentOne/src/AliceInput.txt");
 
+		//declarations 
+		int totalNumber=0;  	
 		
-		try {
+		try 
+		{
+			Scanner input = new Scanner(file);		//scanner, to read input file 
 
-			Scanner input = new Scanner(file);
-
-	        while (input.hasNextLine()) {
-	            String line = input.nextLine();
-	            Array = line.getBytes();
-	            System.out.println(Array.length);
-	        }
-	        input.close();
-	    } 
-	    catch (FileNotFoundException e) {
+	        while (input.hasNextLine()) 
+	        {
+	            String line = input.nextLine();	//reads each line from the input file individually
+	            Array = line.getBytes();		//converts each line from input file from string to bytes
+	            int number = Array.length;		
+	            totalNumber = totalNumber + number;		//sums all of the bytes from all of the lines that have been read thus far 
+	            System.out.println(totalNumber);		//prints current byte total
+	            
+	        }	//end while loop
+	        
+	        input.close();	//close scanner
+	    } 	//end try
+	    catch (FileNotFoundException e) 
+		{
 	        e.printStackTrace();
-	    }
-		
-
-		
-		//while((stringLine = br.readLine()) != null)
-		//{
-			//Array = stringLine.getBytes();	//converts to sequence of bytes
-			
-			//System.out.println(Array.length);
-		//}	//end while 
-	
-	//}	//end input File method
-
-	
+	    }	//end catch 
+	}	//end input File method
 }	//end MPC Server class
-}
+

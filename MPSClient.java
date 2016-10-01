@@ -1,13 +1,11 @@
-//package //_427Assignment;
-
 //imports
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class MPSClient {
-
+public class MPSClient 
+{
 	public static void main(String[] argv) throws Exception 
 	{
 		//declarations
